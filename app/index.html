@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Trophy Atlas — GTA VI Trophy Guide &amp; Tracker</title>
+<link rel="stylesheet" href="atlas.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <p class="kicker">Grand Theft Auto VI &middot; PlayStation 5</p>
+      <h1>Vice Trophy Atlas</h1>
+      <p class="lede">Every one of the 55 trophies, with its official name, description and grade, a guide in the Atlas&rsquo;s own words, and a tracker that remembers where you are.</p>
+    </div>
+    <div class="progress-card" id="progressCard" aria-live="polite">
+      <p class="big-count"><span id="earnedCount">0</span><span class="of"> / 55</span></p>
+      <p class="progress-label">trophies earned</p>
+      <div class="meter" role="progressbar" aria-label="Trophies earned" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0" id="progressMeter"><span id="progressFill"></span></div>
+      <p class="grade-line" id="gradeLine"></p>
+      <p class="next-line" id="nextLine"></p>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Views">
+  <button type="button" class="tab on" data-view="checklist" aria-selected="true">Checklist</button>
+  <button type="button" class="tab" data-view="roadmap" aria-selected="false">Roadmap</button>
+  <button type="button" class="tab" data-view="missables" aria-selected="false">Missables <span class="pill" id="missablePill">10</span></button>
+  <button type="button" class="tab" data-view="about" aria-selected="false">About</button>
+</nav>
+
+<main>
+  <section class="view on" id="view-checklist">
+    <div class="toolbar">
+      <label class="search-box">Search <input id="searchBox" type="search" placeholder="Trophy name, description or target&hellip;" aria-label="Search trophies"></label>
+      <label>Kind
+        <select id="kindPick">
+          <option value="all">All kinds</option>
+          <option value="story">Story</option>
+          <option value="mission">Mission</option>
+          <option value="activity">Activity</option>
+          <option value="collectible">Collectible</option>
+          <option value="exploration">Exploration</option>
+          <option value="combat">Combat</option>
+          <option value="money">Money</option>
+          <option value="event">Event</option>
+          <option value="platinum">Platinum</option>
+        </select>
+      </label>
+      <label>Grade
+        <select id="gradePick">
+          <option value="all">All grades</option>
+          <option value="platinum">Platinum</option>
+          <option value="gold">Gold</option>
+          <option value="silver">Silver</option>
+          <option value="bronze">Bronze</option>
+        </select>
+      </label>
+      <label>Status
+        <select id="statusPick">
+          <option value="all">Earned &amp; missing</option>
+          <option value="earned">Earned only</option>
+          <option value="missing">Missing only</option>
+        </select>
+      </label>
+      <label class="check"><input id="missableOnly" type="checkbox"> Missable only</label>
+      <label class="check"><input id="spoilerSwitch" type="checkbox" checked> Hide story spoilers</label>
+      <span class="spacer"></span>
+      <button type="button" id="exportBtn">Export progress</button>
+      <label class="import-btn">Import progress <input id="importFile" type="file" accept="application/json"></label>
+      <button type="button" id="resetBtn" class="quiet">Reset</button>
+    </div>
+    <p class="showing" id="showingLine"></p>
+    <div class="split">
+      <ul class="trophy-list" id="trophyList"></ul>
+      <aside class="detail" id="detailPane" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <section class="view" id="view-roadmap">
+    <h2>The road to the platinum</h2>
+    <p class="section-intro">Five stages, in the order the Atlas recommends. Story first — the missable trophies live there — then activities, then the map, then crime, then money and cleanup. Each stage lists its trophies with the ones you have earned already ticked.</p>
+    <div id="roadmapStages"></div>
+  </section>
+
+  <section class="view" id="view-missables">
+    <h2>Missable trophies — do these first</h2>
+    <p class="section-intro">Ten trophies name a single moment rather than a grind you can return to: a story challenge, a partner beside you, a one-off event. Each card says why it is flagged, in the guide&rsquo;s own words. Play them before the moment passes — a manual save before each one costs nothing.</p>
+    <div id="missableGrid"></div>
+  </section>
+
+  <section class="view" id="view-about">
+    <h2>About this Atlas</h2>
+    <div class="about-body">
+      <p><strong>Vice Trophy Atlas</strong> is an offline guide and tracker for the 55 PlayStation 5 trophies of Grand Theft Auto VI: 1 platinum, 2 gold, 6 silver and 46 bronze. It runs entirely from its own files — no network, no account, no tracking.</p>
+      <h3>How to use it</h3>
+      <ul>
+        <li><strong>Checklist:</strong> tick a trophy off when you earn it; progress is saved in your browser (localStorage) and survives reloads.</li>
+        <li><strong>Export / Import:</strong> export your progress to a JSON file and import it back on another machine — or keep it as a backup.</li>
+        <li><strong>Filters:</strong> narrow the list by kind, grade, earned or missing, missable only, or free-text search.</li>
+        <li><strong>Spoiler switch:</strong> with spoilers hidden, story trophies stay unnamed until you earn them (or turn the switch off).</li>
+        <li><strong>Roadmap:</strong> the five stages to the platinum, in order, with per-stage progress.</li>
+        <li><strong>Missables:</strong> the ten one-shot trophies, each with the reason it cannot wait.</li>
+      </ul>
+      <h3>Sources</h3>
+      <p>Official trophy names, descriptions and grades are as PlayStation publishes them, as listed by Exophase and PSNProfiles (the two agree on every name, description and grade); progress targets (counts) come from PSNProfiles. Every guide is written in the Atlas&rsquo;s own words and cites its sources beside each trophy. No Rockstar Games logo, artwork or screenshot appears anywhere in this guide.</p>
+      <h3>Demo mode</h3>
+      <p>Open with <code>?demo=1</code> to preview the Atlas with 13 trophies already earned (in memory only, never saved). <code>?view=roadmap</code> or <code>?view=missables</code> opens a view directly; <code>?open=&lt;id&gt;</code> opens one trophy&rsquo;s guide; <code>?spoiler=off</code> shows story names.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Vice Trophy Atlas — an offline, unofficial fan guide. Grand Theft Auto and GTA are trademarks of Take-Two Interactive; this guide is not affiliated with or endorsed by Rockstar Games or PlayStation. Trophy names and descriptions are PlayStation&rsquo;s.</p>
+</footer>
+
+<script type="module" src="js/atlas-main.js"></script>
+</body>
+</html>
